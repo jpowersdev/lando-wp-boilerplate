@@ -4,12 +4,14 @@ Run this shell script and have a WordPress site up in seconds.
 
 ## Requirements
 
-- Lando - [Install](https://docs.lando.dev/basics/installation.html)
+- Lando - [Instructions](https://docs.lando.dev/basics/installation.html)
 
 ## Usage
 
-`git clone git@github.com:jpowersdev/lando-wp-boilerplate my-site`
-`cd my-site && ./setup`
+```bash
+git clone git@github.com:jpowersdev/lando-wp-boilerplate my-site
+cd my-site && ./setup
+```
 
 ## What it Does
 
