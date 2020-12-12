@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Download WordPress
+curl -O https://wordpress.org/latest.tar.gz
+tar -xvf latest.tar.gz
+rm latest.tar.gz
+
+# Start Site
+lando start
+lando wp-install
+LANDO_APP_NAME=$(cat .lando.yml | head -n1 | awk '{ print $2 }')
+echo https://"$LANDO_APP_NAME".lndo.site
+
+# Cleanup
+rm -rf .git
+rm Readme.md
+rm -- "$0"

@@ -1,0 +1,24 @@
+name: my-site
+recipe: wordpress
+config:
+  php: '7.4'
+  via: nginx
+  database: mysql:5.7
+  webroot: wordpress
+  # Set to true when debugging
+  xdebug: false
+services:
+  pma:
+    type: phpmyadmin:5.0
+    hosts: [database]
+  mailhog:
+    type: mailhog:v1.0.0
+    portforward: true
+    hogfrom: [appserver]
+tooling:
+  wp-install:
+    service: appserver
+    description: Installs WordPress site
+    cmd: 
+      - wp config create --path="./wordpress" --dbname=wordpress --dbuser=wordpress --dbpass=wordpress --dbhost=database
+      - wp core install --path="./wordpress" --url="$LANDO_APP_NAME".lndo.site --title="$LANDO_APP_NAME" --admin_user=admin --admin_password=password --admin_email=info@example.com --skip-email
